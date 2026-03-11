@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <bean id ="bean_id" class ="com.Iocwithxml.Laptop">
+            <property name = "price" value = "2000"></property>
+            <property name = "company" value = "acer"></property>
+    </bean>
+    <bean id ="bean_id2" class ="com.Iocwithxml.Laptop">
+        <property name = "price" value = "1"></property>
+        <property name = "company" value = "hp"></property>
+    </bean>
+
+    <bean id ="bean_id3" class ="com.Iocwithxml.Laptop">
+        <property name = "price" value = "1"></property>
+        <property name = "company" value = "nana"></property>
+    </bean>
+
+
+</beans>
