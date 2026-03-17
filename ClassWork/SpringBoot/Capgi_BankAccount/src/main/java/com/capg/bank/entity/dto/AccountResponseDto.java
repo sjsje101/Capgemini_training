@@ -1,5 +1,8 @@
 package com.capg.bank.entity.dto;
 
+import lombok.Data;
+
+@Data
 public class AccountResponseDto {
     private Long balance;
     private  AccountType accountType;

@@ -2,15 +2,15 @@ package com.capg.bank.controller;
 
 import com.capg.bank.constants.AccountConstant;
 import com.capg.bank.entity.dto.AccountDto;
+import com.capg.bank.entity.dto.AccountResponseDto;
 import com.capg.bank.entity.dto.ResponseDto;
 import com.capg.bank.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/account")
@@ -24,6 +24,21 @@ public class AccountController {
         accountService.createAccount(accountDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(AccountConstant.STATUS_200,AccountConstant.MESSAGE_201,null));
     }
+    @GetMapping("/byid/{id}")
+    public ResponseEntity<ResponseDto>findbyid(@PathVariable Integer id)
+    {
+        AccountResponseDto accountDto = accountService.getAccountById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(AccountConstant.STATUS_200,AccountConstant.MESSAGE_GET,accountDto));
+
+    }
+    @GetMapping("/findall")
+    public ResponseEntity<ResponseDto>findAll()
+    {
+        List<AccountResponseDto> accountResponseDtoList=accountService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(AccountConstant.STATUS_200,AccountConstant.MESSAGE_GET,accountResponseDtoList));
+    }
+
+
 
 
 }

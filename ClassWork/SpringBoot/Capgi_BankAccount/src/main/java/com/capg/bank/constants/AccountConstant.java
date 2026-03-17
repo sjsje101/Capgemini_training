@@ -12,7 +12,7 @@ public class AccountConstant {
     public static final String STATUS_204 = "204";
     public static final String MESSAGE_204="Account deleted successfully";
 
-//    public static final String MESSAGE_204
+   public static final String MESSAGE_GET ="Fetched";
 
     public static final String STATUS_404 = "404";
     public static final String MESSAGE_404="Account not  found ";

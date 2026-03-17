@@ -3,16 +3,22 @@ package com.capg.bank.service.impl;
 import com.capg.bank.config.CustomMapper;
 import com.capg.bank.entity.Account;
 import com.capg.bank.entity.dto.AccountDto;
+import com.capg.bank.entity.dto.AccountResponseDto;
 import com.capg.bank.repository.AccountRepository;
 import com.capg.bank.service.AccountService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Service
 
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
+    private final ModelMapper modelMapper;
 
 
     @Override
@@ -26,5 +32,22 @@ public class AccountServiceImpl implements AccountService {
         Account account = CustomMapper.mapAccontDtoToAccount(accountDto, new Account());
         accountRepository.save(account);
 
+    }
+
+    @Override
+    public AccountResponseDto getAccountById(Integer id) {
+        Account account = accountRepository.getReferenceById(id);
+        AccountResponseDto accountdto = modelMapper.map(account.getAccountId(),AccountResponseDto.class);
+        return accountdto;
+    }
+
+    @Override
+    public List<AccountResponseDto> findAll() {
+        List<Account>accountList=accountRepository.findAll();
+        List<AccountResponseDto> accountResponseDtoList = accountList.stream()
+                .map(account -> modelMapper.map(account, AccountResponseDto.class))
+                .toList();
+
+        return accountResponseDtoList;
     }
 }
